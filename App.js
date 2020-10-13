@@ -21,29 +21,7 @@ import ColorTone from './pages/ColorScreen';
 import SliderScreen from './pages/SliderLight';
 import InsertLight from './pages/subScreen/InsertLight';
 import AllDeviceScreen from './pages/AllDevice';
-
-// var db = openDatabase({ name: 'UserDatabase.db' });
-
-// const CreateTbl = ({ navigation }) => {
-//   useEffect(() => {
-//     db.transaction(function (txn) {
-//       txn.executeSql(
-//         "SELECT name FROM sqlite_master WHERE type='table' AND name='table_light'",
-//         [],
-//         function (tx, res) {
-//           console.log('item:', res.rows.length);
-//           if (res.rows.length == 0) {
-//             txn.executeSql('DROP TABLE IF EXISTS table_light', []);
-//             txn.executeSql(
-//               'CREATE TABLE IF NOT EXISTS table_light(item_id INTEGER PRIMARY KEY AUTOINCREMENT, serial_number VARCHAR(20), detail VARCHAR(50), swtich INT(2), color VARCHAR(20), lighting INTEGER )',
-//               []
-//             );
-//           }
-//         }
-//       );
-//     });
-//   }, []);
-// };
+import ModeScreen from './pages/modeScreen';
 
 const HomeStack = createStackNavigator(
   {
@@ -54,6 +32,7 @@ const HomeStack = createStackNavigator(
     Slider: {screen: SliderScreen},
     Insert: {screen: InsertLight},
     AllDevice: {screen: AllDeviceScreen},
+    Mode: {screen: ModeScreen},
   },
   {
     defaultNavigationOptions: {

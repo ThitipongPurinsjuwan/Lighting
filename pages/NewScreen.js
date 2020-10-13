@@ -39,7 +39,7 @@ export default class NewScreen extends React.Component {
 
   saveData = () => {
     this.setState({loading: true, disabled: true}, () => {
-      fetch('http://192.168.1.80/mobile_app/bottom/API/insert_data.php', {
+      fetch('http://192.168.43.69/mobile_app/bottom/API/insert_data.php', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -116,7 +116,7 @@ export default class NewScreen extends React.Component {
               </View>
             </Modal>
             <View style={{margin: 10}}>
-              <Text style={styles.textPublic}>Searc Device</Text>
+              <Text style={styles.textPublic}>Search Device</Text>
               {/* <Text style={styles.textPublic}>Enter Serial Number</Text> */}
             </View>
           </TouchableOpacity>

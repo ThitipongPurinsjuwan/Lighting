@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-
 import Swid from './components/Switch';
 // import ipFile from './components/variable';
 export default class HomeScreen extends React.Component {
@@ -28,14 +27,17 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    return fetch('http://192.168.1.80/mobile_app/bottom/API/get_all.php')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({data: responseJson});
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    return (
+      // fetch('http://192.168.1.80/mobile_app/bottom/API/get_all.php')
+      fetch('http://192.168.43.69/mobile_app/bottom/API/get_all.php')
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({data: responseJson});
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+    );
   }
 
   toggleSwitch1 = (value) => {
@@ -45,7 +47,6 @@ export default class HomeScreen extends React.Component {
   //Home Screen to show in Home Option
   render() {
     return (
-      // <DatabaseC/>
       <View style={{flex: 1, backgroundColor: '#294b57'}}>
         <View
           style={{
@@ -95,15 +96,12 @@ export default class HomeScreen extends React.Component {
                   <Text style={styles.textPublic}>Detail : {item.Detail}</Text>
                   <View
                     style={{
-                      transform: [{rotate: '270deg'}],
+                      transform: [{rotate: '90deg'}],
                       position: 'absolute',
                       margin: 15,
                       marginLeft: 220,
                     }}>
-                    <Switch
-                      onValueChange={this.toggleSwitch1}
-                      value={this.state.switch1Value}
-                    />
+                    <Swid value1={item.OpenStatus} />
                   </View>
                 </View>
               </TouchableOpacity>

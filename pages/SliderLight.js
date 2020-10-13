@@ -8,12 +8,39 @@ export default class SliderExample extends React.Component {
     this.state = {
       id: navigation.getParam('params', ''),
       price: '0',
+      optical: 0,
     };
   }
   // state = {price: '0'};
   updatePrice = (price) => {
     this.setState({price: price});
   };
+
+  updateOptical = () => {
+    this.setState(() => {
+      fetch('http://192.168.43.69/mobile_app/bottom/API/update_optical.php', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          optical: this.state.price,
+          id: this.state.id,
+        }),
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          alert(responseJson);
+          // this.setState({loading: false, disabled: false});
+        })
+        .catch((error) => {
+          console.error(error);
+          // this.setState({loading: false, disabled: false});
+        });
+    });
+  };
+
   render() {
     return (
       <View style={{flex: 1, margin: 50, alignContent: 'center'}}>
@@ -24,7 +51,7 @@ export default class SliderExample extends React.Component {
             color: '#294b57',
             textAlign: 'center',
           }}>
-          Optical Light {this.state.id} p
+          Optical Light Of {this.state.id}
         </Text>
         <Slider
           onValueChange={this.updatePrice}
@@ -41,8 +68,7 @@ export default class SliderExample extends React.Component {
           }}>
           {this.state.price}
         </Text>
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('AllDevice')}>
+        <TouchableOpacity onPress={this.updateOptical}>
           <Text style={styles.textPublic2}>Ok</Text>
         </TouchableOpacity>
       </View>

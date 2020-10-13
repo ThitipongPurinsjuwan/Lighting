@@ -24,14 +24,17 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    return fetch('http://192.168.1.80/mobile_app/bottom/API/get_all.php')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({data: responseJson});
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    return (
+      fetch('http://192.168.1.80/mobile_app/bottom/API/get_all.php')
+        // return fetch('http://172.16.30.226/mobile_app/bottom/API/get_all.php')
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({data: responseJson});
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+    );
   }
 
   //Home Screen to show in Home Option
@@ -65,7 +68,11 @@ export default class HomeScreen extends React.Component {
             renderItem={({item}) => (
               <TouchableOpacity
                 style={styles.boxDevice}
-                onPress={() => this.props.navigation.navigate('Details')}>
+                onPress={() =>
+                  this.props.navigation.navigate('Details', {
+                    params: item.Id,
+                  })
+                }>
                 <View style={{margin: 10}}>
                   <Text style={styles.textPublic}>
                     Serial number : {item.SerialNumber}
@@ -78,7 +85,7 @@ export default class HomeScreen extends React.Component {
                       margin: 15,
                       marginLeft: 220,
                     }}>
-                    <Swid />
+                    <Swid value1={item.OpenStatus} />
                   </View>
                 </View>
               </TouchableOpacity>

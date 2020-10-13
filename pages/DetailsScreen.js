@@ -19,7 +19,7 @@ export default class DetailsScreen extends React.Component {
 
   componentDidMount() {
     var api =
-      'http://192.168.1.80/mobile_app/bottom/API/get_where_id.php?Id=' +
+      'http://192.168.43.69/mobile_app/bottom/API/get_where_id.php?id=' +
       this.state.id;
     return fetch(api)
       .then((response) => response.json())
@@ -74,7 +74,7 @@ export default class DetailsScreen extends React.Component {
                 onPress={() => this.props.navigation.navigate('Details')}>
                 <View style={{margin: 10}}>
                   <Text style={styles.textPublic}>
-                    {this.state.id}Serial number : {item.SerialNumber}
+                    Serial number : {item.SerialNumber}
                   </Text>
                   <Text style={styles.textPublic}>Detail : {item.Detail}</Text>
                   <Text style={styles.textPublic}>
@@ -87,7 +87,7 @@ export default class DetailsScreen extends React.Component {
                       margin: 15,
                       marginLeft: 220,
                     }}>
-                    <Swid />
+                    <Swid value1={item.OpenStatus} />
                   </View>
                 </View>
                 <View
@@ -127,6 +127,11 @@ export default class DetailsScreen extends React.Component {
                     onPress={() => this.props.navigation.navigate('')}>
                     <Text style={styles.submitText}>Timer</Text>
                   </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.submit}
+                    onPress={() => this.props.navigation.navigate('Mode')}>
+                    <Text style={styles.submitText}>Mode</Text>
+                  </TouchableOpacity>
                 </View>
               </TouchableOpacity>
             )}
@@ -155,7 +160,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
-
     elevation: 2,
   },
   submit: {

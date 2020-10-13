@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {View, Switch, StyleSheet} from 'react-native';
 
-const App = () => {
+const App = ({value1}) => {
+  const values = value1 === '1' ? true : false;
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
@@ -11,7 +12,7 @@ const App = () => {
         trackColor={{false: '#767577', true: '#81b0ff'}}
         thumbColor={'#f4f3f4'}
         onValueChange={toggleSwitch}
-        value={isEnabled}
+        value={values}
       />
     </View>
   );

@@ -42,7 +42,8 @@ export default class ColorScreen extends React.Component {
 
   updateColor = (color) => {
     this.setState({loading: true, disabled: true}, () => {
-      fetch('http://172.16.240.174/mobile_app/bottom/update_color.php', {
+      fetch('http://192.168.1.80/mobile_app/bottom/update_color.php', {
+        // fetch('http://172.16.240.174/mobile_app/bottom/update_color.php', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

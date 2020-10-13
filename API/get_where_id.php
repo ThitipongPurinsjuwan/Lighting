@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 $json = json_decode(file_get_contents('php://input'), true);
 
 
-$sql = "SELECT * FROM light WHERE Id = $_GET[Id]";
+$sql = "SELECT * FROM light WHERE Id = $_GET[id]";
 
 $result = $conn->query($sql);
 
